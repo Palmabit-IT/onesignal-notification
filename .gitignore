@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+.vscode
+
+# Node package directories
+node_modules
+jspm_packages
+npm-debug.log*
+.npm
+
+# Coverage directory
+coverage

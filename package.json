@@ -1,0 +1,31 @@
+{
+  "name": "onesignal-notification",
+  "version": "0.0.1",
+  "description": "OneSignal Notification API wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha ./test/*.js",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
+  },
+  "author": "Palmabit <hello@palmabit.com> (https://palmabit.com/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Palmabit-IT/onesignal-notification.git"
+  },
+  "keywords": [
+    "onesignal",
+    "push",
+    "notification",
+    "api"
+  ],
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "nock": "^9.0.9"
+  },
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
