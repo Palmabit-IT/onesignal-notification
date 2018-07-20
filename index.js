@@ -1,1 +1,1 @@
-module.exports = require('./src/onesignal-api')
+module.exports = require('./src/onesignal-api');

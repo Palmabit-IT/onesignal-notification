@@ -1,96 +1,104 @@
-'use strict'
+const request = require('request');
 
-const request = require('request')
+const { isArrayString } = require('./utils');
 
 class OnesignalApi {
-
   constructor(restKey, appId) {
-    this.restKey = restKey
-    this.appId = appId
+    this.restKey = restKey;
+    this.appId = appId;
   }
 
   sendToAll(message, options, callback) {
-    
-    const action = '_segment'
+    const action = 'segment';
     request(
-      this._buildOptions(message, action, options),
+      this.buildOptions(message, action, options),
       (err, response, body) => {
-        this._responder(err, response, body, callback)
-      })
-
+        OnesignalApi.responder(err, response, body, callback);
+      },
+    );
   }
 
-  _responder(err, response, body, callback) {
+  sendToSegments(message, options, callback) {
+    let segments;
+    if (!Array.isArray(options) || !isArrayString(options)) {
+      segments = [];
+    }
+    segments = options;
+    return this.sendToAll(message, segments, callback);
+  }
+
+  static responder(err, response, body, callback) {
     if (err) {
-      return callback(err)
+      return callback(err);
     }
     if (body.errors) {
-      return callback(null, body.errors)
+      return callback(null, body.errors);
     }
-    callback(null, body)
+    return callback(null, body);
   }
 
-  _headers() {
+  headers() {
     return {
-      'Authorization': `Basic ${this.restKey}`,
-      'Content-Type': 'application/json'
-    }
+      Authorization: `Basic ${this.restKey}`,
+      'Content-Type': 'application/json; charset=utf-8',
+    };
   }
 
-  _appId() {
+  getAppId() {
     return {
-      'app_id': this.appId,
-    }
+      app_id: this.appId,
+    };
   }
 
-  _content(message) {
+  static content(message) {
     return {
-      'contents': message
-    }
+      contents: message,
+    };
   }
 
-  _data(data) {
+  static data(data) {
     return {
-      'data': data || {}
-    }
+      data: data || {},
+    };
   }
 
-  _segment(segment) {
+  static segment(segment) {
     return {
-      'included_segments': segment || ['All']
-    }
+      included_segments: segment || ['All'],
+    };
   }
 
-  _filter(filters) {
+  static filter(filters) {
     return {
-      'filters': filters || []
-    }
+      filters: filters || [],
+    };
   }
 
-  _player(player_ids) {
+  static player(playerIds) {
     return {
-      'include_player_ids': player_ids || []
-    }
+      include_player_ids: playerIds || [],
+    };
   }
 
-  _buildBody(message, action, option) {
-    return Object.assign({},
-      this._appId(),
-      this._data(),
-      this._content(message),
-      this[action](option))
+  buildBody(message, action, option) {
+    return Object.assign(
+      {},
+      this.getAppId(),
+      OnesignalApi.data(),
+      OnesignalApi.content(message),
+      OnesignalApi[action](option),
+    );
   }
 
-  _buildOptions(message, action, options) {
+  buildOptions(message, action, options) {
     return {
       method: 'POST',
       uri: 'https://onesignal.com/api/v1/notifications',
-      headers: this._headers(),
+      headers: this.headers(),
       json: true,
-      body: this._buildBody(message, action, options)
-    }
+      body: this.buildBody(message, action, options),
+    };
   }
-
 }
 
-module.exports = OnesignalApi
+module.exports = OnesignalApi;

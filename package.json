@@ -1,11 +1,12 @@
 {
   "name": "onesignal-notification",
-  "version": "0.0.2",
+  "version": "0.1.2",
   "description": "OneSignal Notification API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha ./test/*.js",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
+    "lint": "eslint src/**",
+    "test": "jest --watchAll src",
+    "coverage": "jest --collectCoverageFrom=src/**.js --coverage src"
   },
   "author": "Palmabit <hello@palmabit.com> (https://palmabit.com/)",
   "license": "MIT",
@@ -19,10 +20,15 @@
     "notification",
     "api"
   ],
+  "jest": {
+    "testEnvironment": "node"
+  },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.7.0",
+    "jest": "^22.1.4",
     "nock": "^9.0.9"
   },
   "dependencies": {
