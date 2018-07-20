@@ -9,20 +9,20 @@ A list of selected wrappers for different languages and environments is availabl
 
 ## Installation
 
-`$ npm install onesignal-notification`
+`$ npm install @palmabit/onesignal-notification`
 
 ## Usage
 
 ```
 const OnesignalNotificationApi = require('onesignal-notification')
-const api = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
+const oneSignal = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
 
 const message = {
   it: 'Some message',
   en: 'Some message'
 }
 
-api.sendToAll(message, null, (err, res) => {
+oneSignal.sendToAll(message, null, (err, res) => {
   console.log(err)
   console.log(res)
 })
@@ -34,12 +34,23 @@ api.sendToAll(message, null, (err, res) => {
 
 ```
 const OnesignalNotificationApi = require('onesignal-notification')
-const api = sendToAll(message, options, callback)
+const oneSignal = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
+oneSignal.sendToAll(message, options, (err, res) => {
+  console.log(err)
+  console.log(res)
+})
 ```
 
 ### sendToSegment
 
-//Coming Soon
+```
+const OnesignalNotificationApi = require('onesignal-notification')
+const oneSignal = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
+oneSignal.sendToSegments(message, ['segment1', 'segment2], (err, res) => {
+  console.log(err)
+  console.log(res)
+})
+```
 
 ### sendToDevices
 
