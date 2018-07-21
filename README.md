@@ -14,7 +14,7 @@ A list of selected wrappers for different languages and environments is availabl
 ## Usage
 
 ```
-const OnesignalNotificationApi = require('onesignal-notification')
+const OnesignalNotificationApi = require('@palmabit/onesignal-notification')
 const oneSignal = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
 
 const message = {
@@ -33,7 +33,7 @@ oneSignal.sendToAll(message, null, (err, res) => {
 ### sendToAll
 
 ```
-const OnesignalNotificationApi = require('onesignal-notification')
+const OnesignalNotificationApi = require('@palmabit/onesignal-notification')
 const oneSignal = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
 oneSignal.sendToAll(message, options, (err, res) => {
   console.log(err)
@@ -44,7 +44,7 @@ oneSignal.sendToAll(message, options, (err, res) => {
 ### sendToSegment
 
 ```
-const OnesignalNotificationApi = require('onesignal-notification')
+const OnesignalNotificationApi = require('@palmabit/onesignal-notification')
 const oneSignal = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
 oneSignal.sendToSegments(message, ['segment1', 'segment2], (err, res) => {
   console.log(err)
