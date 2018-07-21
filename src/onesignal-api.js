@@ -1,6 +1,8 @@
 const request = require('request');
 
-const { isArrayString } = require('./utils');
+const utils = require('./utils');
+
+const isArrayString = utils.isArrayString;
 
 class OnesignalApi {
   constructor(restKey, appId) {
@@ -14,8 +16,7 @@ class OnesignalApi {
       this.buildOptions(message, action, options),
       (err, response, body) => {
         OnesignalApi.responder(err, response, body, callback);
-      },
-    );
+      });
   }
 
   sendToSegments(message, options, callback) {
@@ -86,7 +87,7 @@ class OnesignalApi {
       this.getAppId(),
       OnesignalApi.data(),
       OnesignalApi.content(message),
-      OnesignalApi[action](option),
+      OnesignalApi[action](option)
     );
   }
 
