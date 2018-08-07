@@ -84,6 +84,7 @@ describe('OneSignalApi', () => {
       app_id: api.appId,
       data: {},
       filters: option,
+      included_segments: ["All"]
     };
 
     expect(body).toEqual(expected);
@@ -96,7 +97,7 @@ describe('OneSignalApi', () => {
       contents: message,
       app_id: api.appId,
       data: {},
-      include_player_ids: option,
+      include_player_ids: option
     };
 
     expect(body).toEqual(expected);
@@ -144,7 +145,7 @@ describe('OneSignalApi', () => {
 
       const options = null;
 
-      api.sendToAll(message, options, (err, res) => {
+      api.sendToAll(message, options, 'filter', (err, res) => {
         expect(res).toEqual({
           id: '458dcec4-cf53-11e3-add2-000c2940e62c',
           recipients: 3,
@@ -161,4 +162,5 @@ describe('OneSignalApi', () => {
       expect(api.sendToAll.mock.calls).toHaveLength(1);
     });
   });
+
 });

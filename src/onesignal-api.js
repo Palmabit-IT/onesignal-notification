@@ -10,8 +10,7 @@ class OnesignalApi {
     this.appId = appId;
   }
 
-  sendToAll(message, options, callback) {
-    const action = 'segment';
+  sendToAll(message, options, action = 'filter', callback) {
     request(
       this.buildOptions(message, action, options),
       (err, response, body) => {
@@ -25,7 +24,7 @@ class OnesignalApi {
       segments = [];
     }
     segments = options;
-    return this.sendToAll(message, segments, callback);
+    return this.sendToAll(message, segments, 'segment', callback);
   }
 
   static responder(err, response, body, callback) {
@@ -71,6 +70,7 @@ class OnesignalApi {
 
   static filter(filters) {
     return {
+      included_segments: ['All'],
       filters: filters || [],
     };
   }

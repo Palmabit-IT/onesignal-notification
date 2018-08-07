@@ -1,6 +1,6 @@
 {
   "name": "@palmabit/onesignal-notification",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "OneSignal Notification API wrapper",
   "main": "index.js",
   "scripts": {

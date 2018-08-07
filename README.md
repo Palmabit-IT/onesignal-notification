@@ -22,7 +22,7 @@ const message = {
   en: 'Some message'
 }
 
-oneSignal.sendToAll(message, null, (err, res) => {
+oneSignal.sendToAll(message, null, null, (err, res) => {
   console.log(err)
   console.log(res)
 })
@@ -35,7 +35,7 @@ oneSignal.sendToAll(message, null, (err, res) => {
 ```
 const OnesignalNotificationApi = require('@palmabit/onesignal-notification')
 const oneSignal = new OnesignalNotificationApi('MY-REST-KEY', 'APP-ID')
-oneSignal.sendToAll(message, options, (err, res) => {
+oneSignal.sendToAll(message, options, action, (err, res) => {
   console.log(err)
   console.log(res)
 })
